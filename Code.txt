@@ -1,0 +1,39 @@
+Using Audacity software I have created the recordings, place the recordings the python code in the same folder.
+
+
+# importing required module
+import datetime as dt
+import time
+
+## for getting the current time
+time_now=dt.datetime.now().time()
+print("The time now is-",time_now)
+
+# getting hour and minutes values as integers and storing them in suitable variables
+print("Hour:",time_now.hour)
+
+print("Minute:",time_now.minute)
+print("Seconds:",time_now.second)  ## just for fun
+
+# determine which files to play
+# creating variables to store the hour and minute audio file
+hour_filename=f"up-{time_now.hour}.mp3"
+print("Hour file name:",hour_filename)  ## not needed
+minute_filename=f"down-{time_now.minute}.mp3"
+print("Minute file name:",minute_filename)  ## not needed
+
+# for the hours the audio files with the suffix "up" should be used
+# for the minutes the audio files with the suffix "down" should be used
+# play audio files accordingly
+def music_time(filename):
+    from pygame import mixer     # for playing the audiofiles
+    mixer.init()                 # starting the mixer
+    mixer.music.load(filename)   # loading the mixer
+    mixer.music.set_volume(0.7)  # setting the volume
+    mixer.music.play()           # start playing the song
+music_start=music_time("The_time_now_is.mp3")
+time.sleep(3) # provides time gap in seconds
+music_up_hour=music_time(hour_filename)
+time.sleep(1.2)
+music_down_minute=music_time(minute_filename)
+time.sleep(1)
